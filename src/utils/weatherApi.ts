@@ -154,7 +154,7 @@ export const getCitySuggestions = async (query: string): Promise<string[]> => {
   // In a real app, this would call a geocoding API like Google Places or OpenWeatherMap Geo API
   // For now, we'll use a simple simulation with common cities
   const cities = [
-    'London', 'New York', 'Tokyo', 'Paris', 'Berlin', 'Sydney', 
+    'Pune, IN', 'London', 'New York', 'Tokyo', 'Paris', 'Berlin', 'Sydney', 
     'Beijing', 'Moscow', 'Rio de Janeiro', 'Cairo', 'Toronto',
     'Delhi', 'Mumbai', 'Dubai', 'Singapore', 'Barcelona', 'Madrid',
     'Rome', 'Athens', 'Amsterdam', 'Istanbul', 'Bangkok', 'Hong Kong',

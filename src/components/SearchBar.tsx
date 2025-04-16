@@ -13,7 +13,9 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const suggestionRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -21,6 +23,7 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
         const results = await getCitySuggestions(query);
         setSuggestions(results);
         setShowSuggestions(results.length > 0);
+        setSelectedIndex(-1); // Reset selection when suggestions change
       } else {
         setSuggestions([]);
         setShowSuggestions(false);
@@ -64,15 +67,46 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
     setShowSuggestions(false);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions) return;
+    
+    // Down arrow
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex(prev => 
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    }
+    // Up arrow
+    else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex(prev => (prev > 0 ? prev - 1 : 0));
+    }
+    // Enter key
+    else if (e.key === "Enter" && selectedIndex >= 0) {
+      e.preventDefault();
+      const selectedCity = suggestions[selectedIndex];
+      setQuery(selectedCity);
+      onCitySelect(selectedCity);
+      setShowSuggestions(false);
+    }
+    // Escape key
+    else if (e.key === "Escape") {
+      setShowSuggestions(false);
+    }
+  };
+
   return (
     <div className="relative w-full max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="flex">
         <div className="relative flex-grow">
           <Input
+            ref={inputRef}
             type="text"
             placeholder="Search for a city..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="pr-10 rounded-r-none border-r-0"
             onFocus={() => {
               if (suggestions.length > 0) setShowSuggestions(true);
@@ -106,7 +140,11 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
             {suggestions.map((city, index) => (
               <li
                 key={index}
-                className="px-4 py-2 hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                className={`px-4 py-2 cursor-pointer ${
+                  index === selectedIndex
+                    ? "bg-accent text-accent-foreground"
+                    : "hover:bg-accent hover:text-accent-foreground"
+                }`}
                 onClick={() => handleSuggestionClick(city)}
               >
                 {city}

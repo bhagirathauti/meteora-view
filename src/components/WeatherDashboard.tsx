@@ -9,7 +9,7 @@ import { CloudRain } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export function WeatherDashboard() {
-  const [city, setCity] = useState<string>("");
+  const [city, setCity] = useState<string>("Pune, IN");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<ForecastType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -22,9 +22,10 @@ export function WeatherDashboard() {
   useEffect(() => {
     // Check if the user has previously searched for a city
     const lastCity = localStorage.getItem("lastCity");
-    if (lastCity && !city) {
+    if (lastCity) {
       setCity(lastCity);
     }
+    // Default is already set to "Pune, IN" if no lastCity exists
   }, []);
 
   useEffect(() => {
