@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
 
-## Project info
+# Weather Dashboard
 
-**URL**: https://lovable.dev/projects/4052e3ca-917e-4b95-b1c1-8bde07162b54
+A modern, responsive weather application built with React, TypeScript, and Tailwind CSS. Get real-time weather data and forecasts for any city.
 
-## How can I edit this code?
+![Weather Dashboard Preview](https://openweathermap.org/img/wn/02d@2x.png)
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Location Search**: Search for any city with autocomplete suggestions
+- **Current Weather**: View detailed current weather conditions
+- **5-Day Forecast**: See upcoming weather with daily high/low temperatures
+- **Responsive Design**: Optimized for mobile, tablet, and desktop
+- **Dark Mode**: Toggle between light and dark themes
+- **Persistent Preferences**: Remembers your last searched city and theme preference
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4052e3ca-917e-4b95-b1c1-8bde07162b54) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v14 or later)
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+1. Clone the repository
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies
+```sh
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Set up your API Key
+   - Sign up for a free API key at [OpenWeatherMap](https://openweathermap.org/api)
+   - Open `src/utils/weatherApi.ts` and replace `YOUR_OPENWEATHERMAP_API_KEY` with your actual API key
+
+4. Start the development server
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+5. Open your browser and navigate to `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Technologies Used
 
-**Use GitHub Codespaces**
+- **React**: UI component library
+- **TypeScript**: Static typing
+- **Tailwind CSS**: Utility-first CSS framework
+- **Vite**: Fast build tool
+- **shadcn/ui**: Reusable UI components
+- **Axios**: HTTP client
+- **Lucide React**: Icon library
+- **OpenWeatherMap API**: Weather data provider
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+- `src/components`: React components
+  - `WeatherDashboard.tsx`: Main container component
+  - `SearchBar.tsx`: City search with autocomplete
+  - `CurrentWeather.tsx`: Current weather display
+  - `WeatherForecast.tsx`: 5-day forecast container
+  - `ForecastCard.tsx`: Individual day forecast
+  - `ThemeToggle.tsx`: Dark/light mode toggle
+- `src/utils`: Utility functions
+  - `weatherApi.ts`: API calls and data formatting
+- `src/hooks`: Custom React hooks
 
-This project is built with .
+## Customization
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Theme**: Modify the theme in `src/index.css` and `tailwind.config.ts`
+- **API Integration**: Change API endpoints and params in `src/utils/weatherApi.ts`
+- **UI Components**: Customize UI components in the `src/components/ui` directory
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/4052e3ca-917e-4b95-b1c1-8bde07162b54) and click on Share -> Publish.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Can I connect a custom domain to my Lovable project?
+## Acknowledgments
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- [OpenWeatherMap](https://openweathermap.org/) for providing weather data
+- [Lucide Icons](https://lucide.dev/) for beautiful icons
+- [shadcn/ui](https://ui.shadcn.com/) for reusable UI components
